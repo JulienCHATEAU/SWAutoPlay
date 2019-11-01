@@ -12,11 +12,11 @@ You can run several dongeons and other features such as :
 - ToA normal and hard
 - Daily reward (coming soon)
 
-## Installation
+## Installation and launch
 
 It is recommended that you use Android Studio to install this project on your smartphone. As soon as you can open SWAutoPlay mobile application on your phone, the bot is ready to be launched.
 
-## Use
+## Usage
 
 You can update the bot function with Android Studio adding/updating **testInstrumentationRunnerArgument** fields in `SWAutoPlay/app/build.gradle` : 
  > defaultConfig {   
@@ -37,7 +37,5 @@ You can update the bot function with Android Studio adding/updating **testInstru
 | RunCount            | An integer                        |
 | StartStage          | An integer                        |
 | HoH                 | A boolean                         |
-
-Then you just have to run the project with Android Studio and the bot will be launched
 
 However that's a tedious way to use this application. A Graphical User Interface is provided to make it easier : [SWAutoPlay_GUI](https://github.com/JulienCHATEAU/SWAutoPlay_GUI)
