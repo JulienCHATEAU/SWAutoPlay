@@ -43,4 +43,4 @@ However that's a tedious way to use this application. A Graphical User Interface
 ## Support
 
 I don't expect anything but if you like my content and want to support me in my development offering me some coffee :
-ko-fi.com/s734my
+[ko-fi.com/s734my](ko-fi.com/s734my) 
