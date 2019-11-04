@@ -39,3 +39,8 @@ You can update the bot function with Android Studio adding/updating **testInstru
 | HoH                 | A boolean                         |
 
 However that's a tedious way to use this application. A Graphical User Interface is provided to make it easier : [SWAutoPlay_GUI](https://github.com/JulienCHATEAU/SWAutoPlay_GUI)
+
+## Support
+
+I don't expect anything but if you like my content and want to support me in my development offering me some coffee :
+ko-fi.com/s734my
