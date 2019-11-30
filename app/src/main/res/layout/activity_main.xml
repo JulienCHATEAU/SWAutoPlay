@@ -28,9 +28,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:textAlignment="center"
+        android:text="adb shell am instrument -w -r -e AverageDungeonTime 50 -e StartTestPosition island -e debug false -e StartStage 5 -e Refill SocialPoint -e RunCount 1 -e Difficulty Hell -e DungeonName Hydeni com.example.swautoplay.test/androidx.test.runner.AndroidJUnitRunner"
 
-        android:text="adb shell am instrument -w -r -e debug false com.example.swautoplay.test/androidx.test.runner.AndroidJUnitRunner"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -10,6 +10,17 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunnerArgument "DungeonName", "Lumel"
+        testInstrumentationRunnerArgument "AverageDungeonTime", "90"
+        testInstrumentationRunnerArgument "RunCount", "40"
+        testInstrumentationRunnerArgument "Refill", "None"
+        testInstrumentationRunnerArgument "StartTestPosition", "Island"
+        testInstrumentationRunnerArgument "Difficulty", "Vestige"
+        testInstrumentationRunnerArgument "Level", "4"
+        testInstrumentationRunnerArgument "StartStage", "0"
+        testInstrumentationRunnerArgument "RivalsState", "000001000"
+        testInstrumentationRunnerArgument "RivalsStaHoHte", "000001000"
+        testInstrumentationRunnerArgument "HoH", "true"
     }
     buildTypes {
         release {
