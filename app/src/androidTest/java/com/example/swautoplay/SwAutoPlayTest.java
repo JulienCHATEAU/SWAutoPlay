@@ -8,7 +8,6 @@ import androidx.test.runner.AndroidJUnit4;
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
 import androidx.test.core.app.ApplicationProvider;
-import androidx.test.uiautomator.UiObject;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiScrollable;
 import androidx.test.uiautomator.UiSelector;
@@ -19,7 +18,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static com.example.swautoplay.UIConstants.*;
-import static org.hamcrest.core.IsNull.notNullValue;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -200,6 +198,10 @@ public class SwAutoPlayTest {
         //Remove chest panel
         this.click(CHEST_WIDTH_PERCENTAGE, CHEST_HEIGHT_PERCENTAGE);
         this.wait(1);
+
+        //Remove cash ad
+        this.skipCashAdvert();
+        this.wait(1);
     }
 
     private void runRivals(boolean isRivals) throws InterruptedException, UiObjectNotFoundException {
@@ -322,7 +324,7 @@ public class SwAutoPlayTest {
 
         //Click chosen dungeon
         if (this.config.isHoH) {
-            dungeonHeight += 0.15;
+            dungeonWidth += 0.15;
         }
         this.click(dungeonWidth, dungeonHeight);
 
@@ -452,7 +454,7 @@ public class SwAutoPlayTest {
     }
 
     private void skipCashAdvert() throws InterruptedException {
-        for (double i = -0.02; i < 0.02; i += 0.005) {
+        for (double i = -0.01; i < 0.01; i += 0.005) {
             this.click(CASH_AD_CROSS_WIDTH_PERCENTAGE + i, CASH_AD_CROSS_HEIGHT_PERCENTAGE + i);
         }
         this.click(CASH_AD_CLOSE_WIDTH_PERCENTAGE, CASH_AD_CLOSE_HEIGHT_PERCENTAGE);
