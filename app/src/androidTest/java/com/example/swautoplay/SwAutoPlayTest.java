@@ -90,6 +90,10 @@ public class SwAutoPlayTest {
                 this.runRivals(isRivals);
                 break;
 
+            case "Beasts":
+                this.handleBeasts();
+                break;
+
             default:
                 if ("Karzhan".equals(config.dungeonName) || "Ellunia".equals(config.dungeonName) || "Lumel".equals(config.dungeonName)) {
                     this.handleRift();
@@ -98,6 +102,16 @@ public class SwAutoPlayTest {
                 }
                 break;
         }
+    }
+
+    private void handleBeasts() throws UiObjectNotFoundException, InterruptedException {
+        this.click(RIFT_WORLD_ENTRY_WIDTH_PERCENTAGE, RIFT_WORLD_ENTRY_HEIGHT_PERCENTAGE);
+        this.click(CONFIRM_WORLD_RIFT_ENTRY_WIDTH_PERCENTAGE, CONFIRM_WORLD_RIFT_ENTRY_HEIGHT_PERCENTAGE);
+        this.click(BEASTS_ENTRANCE_WIDTH_PERCENTAGE, BEASTS_ENTRANCE_HEIGHT_PERCENTAGE);
+        double beast_height = RED_BEAST_HEIGHT_PERCENTAGE + BEAST_STEP * this.config.level;
+        this.click(RED_BEAST_WIDTH_PERCENTAGE, beast_height);
+        this.click(BEAST_BATTLE_WIDTH_PERCENTAGE, BEAST_BATTLE_HEIGHT_PERCENTAGE);
+        this.launchDungeon(0);
     }
 
     private void handleRift() throws UiObjectNotFoundException, InterruptedException {
@@ -457,7 +471,7 @@ public class SwAutoPlayTest {
         for (double i = -0.01; i < 0.01; i += 0.005) {
             this.click(CASH_AD_CROSS_WIDTH_PERCENTAGE + i, CASH_AD_CROSS_HEIGHT_PERCENTAGE + i);
         }
-        this.click(CASH_AD_CLOSE_WIDTH_PERCENTAGE, CASH_AD_CLOSE_HEIGHT_PERCENTAGE);
+//        this.click(CASH_AD_CLOSE_WIDTH_PERCENTAGE, CASH_AD_CLOSE_HEIGHT_PERCENTAGE);
     }
 
     private void click(double widthPercentage, double heightPercentage) throws InterruptedException {

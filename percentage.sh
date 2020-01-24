@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/zsh
 i=0
 for var in "$@"
 do
-    if [ $((i%2)) -eq 0 ]
+    if [[ $((i%2)) -eq 0 ]]
     then
         bc -l <<< $var/1776
     else

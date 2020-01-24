@@ -176,6 +176,23 @@ public class UIConstants {
     public static double ELLUNIA_SANCTUARY_HEIGHT_PERCENTAGE = 0.4115;
     public static double ELLUNIA_SANCTUARY_WIDTH_PERCENTAGE = 0.4324;
 
+    public static double BEASTS_ENTRANCE_HEIGHT_PERCENTAGE = 0.6976;
+    public static double BEASTS_ENTRANCE_WIDTH_PERCENTAGE = 0.7194;
+
+    public static double CONFIRM_WORLD_RIFT_ENTRY_HEIGHT_PERCENTAGE = 0.4476;
+    public static double CONFIRM_WORLD_RIFT_ENTRY_WIDTH_PERCENTAGE = 0.6064;
+
+    public static double RED_BEAST_HEIGHT_PERCENTAGE = 0.5518;
+    public static double RED_BEAST_WIDTH_PERCENTAGE = 0.2092;
+
+    public static double RIFT_WORLD_ENTRY_HEIGHT_PERCENTAGE = 0.8338;
+    public static double RIFT_WORLD_ENTRY_WIDTH_PERCENTAGE = 0.8296;
+
+    public static double BEAST_BATTLE_HEIGHT_PERCENTAGE = 0.8963;
+    public static double BEAST_BATTLE_WIDTH_PERCENTAGE = 0.8601;
+
+    public static double BEAST_STEP = 0.0842;
+
     public static int getScenarioId(String scenarioDungeonName) {
         switch (scenarioDungeonName) {
             case "Garen":
