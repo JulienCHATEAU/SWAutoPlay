@@ -13,7 +13,7 @@ You can run several dongeons and other features such as :
 - Karzhan
 - Ellunia
 - Lumel
-- Daily reward (coming soon)
+- Elemental Rift Beasts (NEW)
 
 ## Installation and launch
 
