@@ -191,7 +191,14 @@ public class UIConstants {
     public static double BEAST_BATTLE_HEIGHT_PERCENTAGE = 0.8963;
     public static double BEAST_BATTLE_WIDTH_PERCENTAGE = 0.8601;
 
+    public static double CASH_AD_DUNGEON_CHOICE_HEIGHT_PERCENTAGE = 0.9701;
+    public static double CASH_AD_DUNGEON_CHOICE_WIDTH_PERCENTAGE = 0.0416;
+
+    public static double BEASTS_REWARD_GET_HEIGHT_PERCENTAGE = 0.5450;
+    public static double BEASTS_REWARD_GET_WIDTH_PERCENTAGE = 0.8259;
+
     public static double BEAST_STEP = 0.0842;
+
 
     public static int getScenarioId(String scenarioDungeonName) {
         switch (scenarioDungeonName) {

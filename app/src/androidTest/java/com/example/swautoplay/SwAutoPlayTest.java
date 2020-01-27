@@ -67,6 +67,8 @@ public class SwAutoPlayTest {
             //Move to battle menu
             this.click(BATTLE_WIDTH_PERCENTAGE, BATTLE_HEIGHT_PERCENTAGE);
             this.wait(1);
+            this.skipCashAdvert(CASH_AD_DUNGEON_CHOICE_WIDTH_PERCENTAGE, CASH_AD_DUNGEON_CHOICE_HEIGHT_PERCENTAGE);
+            this.wait(1);
         }
 
         switch (config.dungeonName) {
@@ -111,7 +113,7 @@ public class SwAutoPlayTest {
         double beast_height = RED_BEAST_HEIGHT_PERCENTAGE + BEAST_STEP * this.config.level;
         this.click(RED_BEAST_WIDTH_PERCENTAGE, beast_height);
         this.click(BEAST_BATTLE_WIDTH_PERCENTAGE, BEAST_BATTLE_HEIGHT_PERCENTAGE);
-        this.launchDungeon(0);
+        this.launchDungeon(2);
     }
 
     private void handleRift() throws UiObjectNotFoundException, InterruptedException {
@@ -206,7 +208,7 @@ public class SwAutoPlayTest {
         this.wait(1);
 
         //Remove cash ad
-        this.skipCashAdvert();
+        this.skipCashAdvert(CASH_AD_CROSS_WIDTH_PERCENTAGE, CASH_AD_CROSS_HEIGHT_PERCENTAGE);
         this.wait(1);
 
         //Remove chest panel
@@ -214,7 +216,7 @@ public class SwAutoPlayTest {
         this.wait(1);
 
         //Remove cash ad
-        this.skipCashAdvert();
+        this.skipCashAdvert(CASH_AD_CROSS_WIDTH_PERCENTAGE, CASH_AD_CROSS_HEIGHT_PERCENTAGE);
         this.wait(1);
     }
 
@@ -367,7 +369,7 @@ public class SwAutoPlayTest {
     /* Handle dungeons runs replay
     dungeonType : 0 = Cairos dungeon
                   1 = Scenario
-                  2 =
+                  2 = Beasts
     * */
     private void launchDungeon(int dungeonType) throws InterruptedException {
         //Click go button to launch dungeon
@@ -408,7 +410,9 @@ public class SwAutoPlayTest {
         if (dungeonType == 1) {//sell only scenario rewards
             this.click(REWARD_SELL_WIDTH_PERCENTAGE, REWARD_SELL_HEIGHT_PERCENTAGE);
             this.click(SCENARIO_CONFIRM_SELLING_WIDTH_PERCENTAGE, SCENARIO_CONFIRM_SELLING_HEIGHT_PERCENTAGE);
-        } else {
+        } if (dungeonType == 2) {//skip rewards in beasts
+            this.click(BEASTS_REWARD_GET_WIDTH_PERCENTAGE, BEASTS_REWARD_GET_HEIGHT_PERCENTAGE);
+        }else {
             this.click(REWARD_GET_WIDTH_PERCENTAGE, REWARD_GET_HEIGHT_PERCENTAGE);
         }
 
@@ -467,9 +471,9 @@ public class SwAutoPlayTest {
 
     }
 
-    private void skipCashAdvert() throws InterruptedException {
+    private void skipCashAdvert(double startWidth, double startHeight) throws InterruptedException {
         for (double i = -0.01; i < 0.01; i += 0.005) {
-            this.click(CASH_AD_CROSS_WIDTH_PERCENTAGE + i, CASH_AD_CROSS_HEIGHT_PERCENTAGE + i);
+            this.click(startWidth + i, startHeight + i);
         }
 //        this.click(CASH_AD_CLOSE_WIDTH_PERCENTAGE, CASH_AD_CLOSE_HEIGHT_PERCENTAGE);
     }
