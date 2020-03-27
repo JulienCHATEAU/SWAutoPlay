@@ -140,11 +140,10 @@ public class UIConstants {
     public static double CONFIRM_RIFT_ENTRY_HEIGHT_PERCENTAGE = 0.4498;
     public static double CONFIRM_RIFT_ENTRY_WIDTH_PERCENTAGE = 0.6092;
 
-    public static double LEFT_RIFT_MONSTER_HEIGHT_PERCENTAGE = 0.8057;
+    public static double LEFT_RIFT_MONSTER_HEIGHT_PERCENTAGE = 0.7291;
     public static double LEFT_RIFT_MONSTER_WIDTH_PERCENTAGE = 0.2000;
 
-    public static double RIGHT_RIFT_MONSTER_HEIGHT_PERCENTAGE = 0.8823;
-    public static double RIGHT_RIFT_MONSTER_WIDTH_PERCENTAGE = 0.2000;
+    public static double RIFT_MONSTER_STEP_HEIGHT_PERCENTAGE = 0.0766;
 
     public static double KARZHAN_HEIGHT_PERCENTAGE = 0.3609;
     public static double KARZHAN_WIDTH_PERCENTAGE = 0.2675;

@@ -151,11 +151,7 @@ public class SwAutoPlayTest {
         this.click(zoneWidth, zoneHeight);
         if ("Vestige".equals(config.difficulty)) {//Vestige
             this.click(vestigeWidth, vestigeHeight);
-            if (config.startStage == 0) {
-                this.click(LEFT_RIFT_MONSTER_WIDTH_PERCENTAGE, LEFT_RIFT_MONSTER_HEIGHT_PERCENTAGE);
-            } else {
-                this.click(RIGHT_RIFT_MONSTER_WIDTH_PERCENTAGE, RIGHT_RIFT_MONSTER_HEIGHT_PERCENTAGE);
-            }
+            this.click(LEFT_RIFT_MONSTER_WIDTH_PERCENTAGE + RIFT_MONSTER_STEP_HEIGHT_PERCENTAGE * config.startStage, LEFT_RIFT_MONSTER_HEIGHT_PERCENTAGE);
         } else {//Rune dungeon
             this.click(dungeonWidth, dungeonHeight);
         }
@@ -417,6 +413,12 @@ public class SwAutoPlayTest {
         }
 
         this.click(REWARD_OK_WIDTH_PERCENTAGE, REWARD_OK_HEIGHT_PERCENTAGE);
+
+        if (this.config.isDoubleReward) {
+            this.click(CLICK_SOMEWHERE_WIDTH_PERCENTAGE, CLICK_SOMEWHERE_HEIGHT_PERCENTAGE);
+            this.click(REWARD_GET_WIDTH_PERCENTAGE, REWARD_GET_HEIGHT_PERCENTAGE);
+            this.click(REWARD_OK_WIDTH_PERCENTAGE, REWARD_OK_HEIGHT_PERCENTAGE);
+        }
 
         if (this.dungeonDoneCount < config.runCount - 1) {
             this.click(REPLAY_WIDTH_PERCENTAGE, REPLAY_HEIGHT_PERCENTAGE);

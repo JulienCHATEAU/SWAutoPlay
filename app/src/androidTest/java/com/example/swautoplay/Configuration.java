@@ -17,6 +17,7 @@ public class Configuration {
     public int level;
 
     public boolean isHoH;
+    public boolean isDoubleReward;
     public boolean[] availableRivals;
 
     public Configuration parse() {
@@ -46,6 +47,9 @@ public class Configuration {
 
         temp = InstrumentationRegistry.getArguments().getString("HoH");
         this.isHoH = (temp == null) ? false : Boolean.parseBoolean(temp);
+
+        temp = InstrumentationRegistry.getArguments().getString("DoubleReward");
+        this.isDoubleReward = (temp == null) ? false : Boolean.parseBoolean(temp);
         return this;
     }
 
