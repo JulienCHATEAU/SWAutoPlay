@@ -406,9 +406,9 @@ public class SwAutoPlayTest {
         if (dungeonType == 1) {//sell only scenario rewards
             this.click(REWARD_SELL_WIDTH_PERCENTAGE, REWARD_SELL_HEIGHT_PERCENTAGE);
             this.click(SCENARIO_CONFIRM_SELLING_WIDTH_PERCENTAGE, SCENARIO_CONFIRM_SELLING_HEIGHT_PERCENTAGE);
-        } if (dungeonType == 2) {//skip rewards in beasts
+        } else if (dungeonType == 2) {//skip rewards in beasts
             this.click(BEASTS_REWARD_GET_WIDTH_PERCENTAGE, BEASTS_REWARD_GET_HEIGHT_PERCENTAGE);
-        }else {
+        } else {
             this.click(REWARD_GET_WIDTH_PERCENTAGE, REWARD_GET_HEIGHT_PERCENTAGE);
         }
 
