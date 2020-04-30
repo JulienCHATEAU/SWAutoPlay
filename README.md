@@ -17,7 +17,8 @@ You can run several dongeons and other features such as :
 
 ## Installation and launch
 
-It is recommended that you use Android Studio to install this project on your smartphone. As soon as you can open SWAutoPlay mobile application on your phone, the bot is ready to be launched.
+You will have to use Android Studio to install the project. First, import the project then run the `../SWAutoPlay/app/src/androidTest/java/com/example/swautoplay/SwAutoPlayTest.java` class.
+If everything went correctly, the SWAutoPlay mobile application is supposed to be installed on your phone, which means the bot is ready to be used.
 
 ## Usage
 
