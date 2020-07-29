@@ -24,6 +24,22 @@ public class Configuration {
     public boolean isDoubleReward;
     public boolean[] availableRivals;
 
+    public Configuration() {
+        this.dungeonName = "";
+        this.startTestPosition = "";
+        this.refillState = "";
+        this.difficulty = "";
+
+        this.averageDungeonTime = 0;
+        this.runCount = 0;
+        this.startStage = 0;
+        this.level = 0;
+
+        this.isHoH = false;
+        this.isDoubleReward = false;
+        this.availableRivals = new boolean[RIVALS_COUNT];
+    }
+
     public Configuration parse() {
         this.dungeonName = InstrumentationRegistry.getArguments().getString("DungeonName");
         this.startTestPosition = InstrumentationRegistry.getArguments().getString("StartTestPosition");
@@ -41,7 +57,6 @@ public class Configuration {
         this.level = (temp == null) ? -1 : Integer.parseInt(temp);
 
         temp = InstrumentationRegistry.getArguments().getString("RivalsState");
-        this.availableRivals = new boolean[RIVALS_COUNT];
         if (temp != null) {
             String[] splitRivals = temp.split("");
             for (int i = 1; i<RIVALS_COUNT+1; i++) {

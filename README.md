@@ -13,7 +13,8 @@ You can run several dongeons and other features such as :
 - Karzhan
 - Ellunia
 - Lumel
-- Elemental Rift Beasts (NEW)
+- Elemental Rift Beasts
+- Rivals (NEW)
 
 ## Installation and launch
 
@@ -31,17 +32,18 @@ You can update the bot function with Android Studio adding/updating **testInstru
         - . . .   
     }   
    
-| Argument name       | Possible values                                                         |
-|---                  |---                                                                      |
-| DungeonName         | Giant / Drake / Necropolis / ToA / Karzhan / Ellunia / Lumel / Beasts   |
-| StartTestPosition   | ToA / Home / Island                                                     |
-| Refill              | Chest / SocialPoint / Crystals / None                                   |
-| Difficulty          | Hard / Normal / Hell / Vestige / Rune                                   |
-| AverageDungeonTime  | An integer                                                              |
-| RunCount            | An integer                                                              |
-| StartStage          | An integer                                                              |
-| Level               | An integer                                                              |
-| HoH                 | A boolean                                                               |
+| Argument name       | Possible values                                                                                 |
+|---                  |---                                                                                              |
+| DungeonName         | Giant / Drake / Necropolis / ToA / Karzhan / Ellunia / Lumel / Beasts / Rivals                  |
+| StartTestPosition   | ToA / Home / Island                                                                             |
+| Refill              | Chest / SocialPoint / Crystals / None                                                           |
+| Difficulty          | Hard / Normal / Hell / Vestige / Rune                                                           |
+| AverageDungeonTime  | An integer                                                                                      |
+| RunCount            | An integer                                                                                      |
+| StartStage          | An integer                                                                                      |
+| Level               | An integer                                                                                      |
+| HoH                 | A boolean                                                                                       |
+| RivalsStates        | A binary string with 9 bits ('10010000' means only Gready and Morgana are ready to battle)      |
 
 However that's a tedious way to use this application. A Graphical User Interface is provided to make it easier : [SWAutoPlay_GUI](https://github.com/JulienCHATEAU/SWAutoPlay_GUI)
 
