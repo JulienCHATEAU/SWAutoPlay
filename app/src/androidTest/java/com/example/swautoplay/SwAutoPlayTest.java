@@ -216,33 +216,6 @@ public class SwAutoPlayTest {
         this.wait(1);
     }
 
-    private void runRivals(boolean isRivals) throws InterruptedException, UiObjectNotFoundException {
-        if (!isRivals) {
-            this.click(ARENA_BAT_WIDTH_PERCENTAGE, ARENA_BAT_HEIGHT_PERCENTAGE);
-
-            this.click(ARENA_WIDTH_PERCENTAGE, ARENA_HEIGHT_PERCENTAGE);
-
-            this.click(RIVAL_WIDTH_PERCENTAGE, RIVAL_HEIGHT_PERCENTAGE);
-        }
-
-        for (int i = 0; i < RIVALS_COUNT; i++) {
-            if (i == 5) {
-                UiScrollable scroller = new UiScrollable(new UiSelector().resourceId("android:id/content"));
-                scroller.setAsVerticalList();
-                scroller.scrollToEnd(20);
-                this.wait(10);
-            }
-            if (this.config.availableRivals[i]) {
-                this.click(RIVALS_WIDTH_PERCENTAGE[i], RIVALS_HEIGHT_PERCENTAGE);
-                if (i == 0) {
-                    this.click(SAVED_TEAMS_WIDTH_PERCENTAGE, SAVED_TEAMS_HEIGHT_PERCENTAGE);
-                    this.click(SAVED_TEAM_1_WIDTH_PERCENTAGE, SAVED_TEAM_1_HEIGHT_PERCENTAGE);
-                }
-                this.launchDungeon(2);
-            }
-        }
-    }
-
     private void runScenario(int dungeonId) throws UiObjectNotFoundException, InterruptedException {
         UiScrollable scroller = new UiScrollable(new UiSelector().resourceId("com.com2us.smon.normal.freefull.google.kr.android.common:id/GLViewLayout"));
         scroller.setAsHorizontalList();
@@ -274,19 +247,10 @@ public class SwAutoPlayTest {
                 break;
         }
 
-        /*Can't scroll on scenario stages view -> can only run stages n°1 to 4*/
-//        if (config.startStage > 4) {
-//            UiScrollable scroller2 = new UiScrollable(new UiSelector().resourceId("com.com2us.smon.normal.freefull.google.kr.android.common:id/TextInputLayout"));
-//            scroller2.setAsVerticalList();
-//            scroller2.scrollToEnd(20);
-//            this.wait(2);
-//            scroller2.scrollToBeginning(20);
-//            this.wait(2);
-//            scroller2.scrollForward(20);
-//            this.wait(2);
-//            scroller2.scrollBackward(20);
-//            this.wait(2);
-//        }
+        if (config.startStage > 4) {
+            this.swipe(70, 70, 70, 10);
+            this.wait(1);
+        }
 
         this.click(SCENARIO_STAGES_WIDTH_PERCENTAGE[config.startStage - 1], SCENARIO_STAGES_HEIGHT_PERCENTAGE);
 
@@ -348,15 +312,39 @@ public class SwAutoPlayTest {
         this.launchDungeon(0);
     }
 
+		private void runRivals(boolean isRivals) throws InterruptedException, UiObjectNotFoundException {
+			if (!isRivals) {
+				this.click(ARENA_BAT_WIDTH_PERCENTAGE, ARENA_BAT_HEIGHT_PERCENTAGE);
+
+				this.click(ARENA_WIDTH_PERCENTAGE, ARENA_HEIGHT_PERCENTAGE);
+
+				this.click(RIVAL_WIDTH_PERCENTAGE, RIVAL_HEIGHT_PERCENTAGE);
+			}
+
+			for (int i = 0; i < RIVALS_COUNT; i++) {
+				if (i == 5) {
+					this.swipe(50, 80, 50, 10);
+					this.wait(1);
+				}
+				if (this.config.availableRivals[i]) {
+					this.click(RIVALS_WIDTH_PERCENTAGE[i], RIVALS_HEIGHT_PERCENTAGE);
+					this.launchOneArenaBattle();
+				}
+			}
+		}
+
     private void launchOneArenaBattle() throws InterruptedException {
         //Click go button to launch dungeon
-        this.click(DUNGEON_GO_WIDTH_PERCENTAGE, DUNGEON_GO_HEIGHT_PERCENTAGE);
+			this.wait(1);
+			this.click(DUNGEON_GO_WIDTH_PERCENTAGE, DUNGEON_GO_HEIGHT_PERCENTAGE);
+
+			this.wait(DUNGEON_LAUNCH_TIME);// + 20 = error marge
 
         this.click(AUTO_PLAY_WIDTH_PERCENTAGE, AUTO_PLAY_HEIGHT_PERCENTAGE);//dialog panel
         this.click(AUTO_PLAY_WIDTH_PERCENTAGE, AUTO_PLAY_HEIGHT_PERCENTAGE);//auto play
 
         //Wait for the run to end
-        this.wait(config.averageDungeonTime + 20);// + 20 = error marge
+        this.wait(20);// + 20 = error marge
 
         this.click(CLICK_SOMEWHERE_WIDTH_PERCENTAGE, CLICK_SOMEWHERE_HEIGHT_PERCENTAGE);
         this.click(AUTO_PLAY_WIDTH_PERCENTAGE, AUTO_PLAY_HEIGHT_PERCENTAGE);//dialog panel
@@ -366,6 +354,7 @@ public class SwAutoPlayTest {
     dungeonType : 0 = Cairos dungeon
                   1 = Scenario
                   2 = Beasts
+                  3 = Rivals
     * */
     private void launchDungeon(int dungeonType) throws InterruptedException {
         //Click go button to launch dungeon
@@ -484,6 +473,12 @@ public class SwAutoPlayTest {
         this.device.click((int) (this.device.getDisplayWidth() * heightPercentage), (int) (this.device.getDisplayHeight() * widthPercentage));
         this.wait(1);
     }
+
+    private void swipe(int percX, int percY, int percEndX, int percEndY) {
+			int xscreen = this.device.getDisplayWidth();
+			int yscreen = this.device.getDisplayHeight();
+			this.device.swipe(xscreen * percX / 100, yscreen * percY / 100, xscreen * percEndX / 100, yscreen * percEndY / 100, 50);
+		}
 
     private void wait(int second) throws InterruptedException {
         synchronized (this.device) {

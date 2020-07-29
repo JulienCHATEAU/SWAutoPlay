@@ -1,5 +1,9 @@
 package com.example.swautoplay;
 
+import android.app.Instrumentation;
+import android.os.Bundle;
+import android.util.Log;
+
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import static com.example.swautoplay.SwAutoPlayTest.RIVALS_COUNT;
@@ -40,10 +44,11 @@ public class Configuration {
         this.availableRivals = new boolean[RIVALS_COUNT];
         if (temp != null) {
             String[] splitRivals = temp.split("");
-            for (int i = 0; i<RIVALS_COUNT; i++) {
-                this.availableRivals[i] = "1".equals(splitRivals[i]);
+            for (int i = 1; i<RIVALS_COUNT+1; i++) {
+                this.availableRivals[i-1] = "1".equals(splitRivals[i]);
             }
         }
+
 
         temp = InstrumentationRegistry.getArguments().getString("HoH");
         this.isHoH = (temp == null) ? false : Boolean.parseBoolean(temp);

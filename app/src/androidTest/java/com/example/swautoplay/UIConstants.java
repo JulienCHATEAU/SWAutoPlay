@@ -132,7 +132,7 @@ public class UIConstants {
     public static double SAVED_TEAM_1_WIDTH_PERCENTAGE = 0.3120;
 
     public static double RIVALS_HEIGHT_PERCENTAGE = 0.8682;
-    public static double[] RIVALS_WIDTH_PERCENTAGE = {0.2712, 0.4148, 0.5592, 0.7027, 0.8370, 0.3620, 0.5055, 0.7111, 0.8916};
+    public static double[] RIVALS_WIDTH_PERCENTAGE = {0.2712, 0.4148, 0.5592, 0.7027, 0.8370, 0.3620, 0.5055, 0.7111, 0.8370};
 
     public static double RIFT_STRUCTURE_HEIGHT_PERCENTAGE = 0.6531;
     public static double RIFT_STRUCTURE_WIDTH_PERCENTAGE = 0.7712;
