@@ -10,9 +10,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunnerArgument "DungeonName", "Giant"
-        testInstrumentationRunnerArgument "AverageDungeonTime", "180"
-        testInstrumentationRunnerArgument "RunCount", "70"
+        testInstrumentationRunnerArgument "DungeonName", "Fortress"
+        testInstrumentationRunnerArgument "AverageDungeonTime", "90"
+        testInstrumentationRunnerArgument "RunCount", "30"
         testInstrumentationRunnerArgument "Refill", "None"
         testInstrumentationRunnerArgument "StartTestPosition", "Island"
         testInstrumentationRunnerArgument "Difficulty", "Hard"

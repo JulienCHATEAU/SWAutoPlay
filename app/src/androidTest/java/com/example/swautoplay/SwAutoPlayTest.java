@@ -71,18 +71,32 @@ public class SwAutoPlayTest {
             this.wait(1);
         }
 
+				int index;
         switch (config.dungeonName) {
             case "Giant":
-                this.runCairosDungeon(GIANT_WIDTH_PERCENTAGE, GIANT_HEIGHT_PERCENTAGE);
-                break;
+							index = 0;
+							this.runCairosDungeon(index, CAIROS_DUNGEON_HEIGHT_PERCENTAGE);
+							break;
 
             case "Drake":
-                this.runCairosDungeon(DRAKE_WIDTH_PERCENTAGE, DRAKE_HEIGHT_PERCENTAGE);
-                break;
+							index = 1;
+							this.runCairosDungeon(index, CAIROS_DUNGEON_HEIGHT_PERCENTAGE);
+							break;
 
             case "Necropolis":
-                this.runCairosDungeon(NECROPOLIS_WIDTH_PERCENTAGE, NECROPOLIS_HEIGHT_PERCENTAGE);
-                break;
+							index = 2;
+							this.runCairosDungeon(index, CAIROS_DUNGEON_HEIGHT_PERCENTAGE);
+							break;
+
+						case "Fortress":
+							index = 3;
+							this.runCairosDungeon(index, CAIROS_DUNGEON_HEIGHT_PERCENTAGE);
+							break;
+
+						case "Crypt":
+							index = 4;
+							this.runCairosDungeon(index, CAIROS_DUNGEON_HEIGHT_PERCENTAGE);
+							break;
 
             case "ToA":
                 this.runToA(isToA);
@@ -293,16 +307,19 @@ public class SwAutoPlayTest {
 
     /* Runs a Cairos dungeon if on Cairos dungeon screen
      * */
-    private void runCairosDungeon(double dungeonWidth, double dungeonHeight) throws InterruptedException, UiObjectNotFoundException {
+    private void runCairosDungeon(int index, double dungeonHeight) throws InterruptedException, UiObjectNotFoundException {
         //Click Cairos dungeon
         this.click(CAIROS_WIDTH_PERCENTAGE, CAIROS_HEIGHT_PERCENTAGE);
         this.wait(1);
 
         //Click chosen dungeon
         if (this.config.isHoH) {
-            dungeonWidth += 0.15;
-        }
-        this.click(dungeonWidth, dungeonHeight);
+					if (index == 4) {//If dungeon is Crypt and there is one HoH, need to scroll down
+						this.swipe(30, 70, 30, 30);
+					}
+					index++;
+				}
+        this.click(CAIROS_DUNGEON_WIDTH_PERCENTAGES[index], dungeonHeight);
 
         UiScrollable scroller = new UiScrollable(new UiSelector().resourceId("com.com2us.smon.normal.freefull.google.kr.android.common:id/GLViewLayout"));
         scroller.scrollToEnd(20);

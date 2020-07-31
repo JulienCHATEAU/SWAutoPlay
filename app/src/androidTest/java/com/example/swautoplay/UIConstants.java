@@ -20,14 +20,8 @@ public class UIConstants {
     public static double CAIROS_HEIGHT_PERCENTAGE = 0.5349;
     public static double CAIROS_WIDTH_PERCENTAGE = 0.9259;
 
-    public static double GIANT_HEIGHT_PERCENTAGE = 0.2775;
-    public static double GIANT_WIDTH_PERCENTAGE = 0.3750;
-
-    public static double DRAKE_HEIGHT_PERCENTAGE = 0.2792;
-    public static double DRAKE_WIDTH_PERCENTAGE = 0.5324;
-
-    public static double NECROPOLIS_HEIGHT_PERCENTAGE = 0.2759;
-    public static double NECROPOLIS_WIDTH_PERCENTAGE = 0.6888;
+		public static double CAIROS_DUNGEON_HEIGHT_PERCENTAGE = 0.2775;
+		public static double[] CAIROS_DUNGEON_WIDTH_PERCENTAGES = {0.3750, 0.5324, 0.6888, 0.8388, 0.9333, 0.7800};
 
     public static double B10_HEIGHT_PERCENTAGE = 0.8963;
     public static double B10_WIDTH_PERCENTAGE = 0.8601;
