@@ -5,9 +5,9 @@ SWAutoPlay is an automaton abled to play the mobile game **Summoners War: Sky Ar
 ## Features
 
 You can run several dungeons and other features such as :
-- Giant B10
-- Drake B10
-- Necropolis B10
+- Giant B12
+- Drake B12
+- Necropolis B12
 - Scenario
 - ToA normal and hard
 - Karzhan
