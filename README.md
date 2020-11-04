@@ -14,7 +14,8 @@ You can run several dungeons and other features such as :
 - Ellunia
 - Lumel
 - Elemental Rift Beasts
-- Rivals (NEW)
+- Rivals
+- Raid (NEW)
 
 ## Installation and launch
 
