@@ -11,6 +11,9 @@ public class UIConstants {
     public static double CASH_AD_CLOSE_HEIGHT_PERCENTAGE  = 0.5422;
     public static double CASH_AD_CLOSE_WIDTH_PERCENTAGE = 0.9361;
 
+    public static double EVENT_AWARD_OK_HEIGHT_PERCENTAGE  = 0.5484;
+    public static double EVENT_AWARD_OK_WIDTH_PERCENTAGE = 0.7094;
+
     public static double CHEST_HEIGHT_PERCENTAGE  = 0.9746;
     public static double CHEST_WIDTH_PERCENTAGE = 0.1566;
 
@@ -20,8 +23,8 @@ public class UIConstants {
     public static double CAIROS_HEIGHT_PERCENTAGE = 0.5349;
     public static double CAIROS_WIDTH_PERCENTAGE = 0.9259;
 
-		public static double CAIROS_DUNGEON_HEIGHT_PERCENTAGE = 0.2775;
-		public static double[] CAIROS_DUNGEON_WIDTH_PERCENTAGES = {0.3750, 0.5324, 0.6888, 0.8388, 0.9333, 0.7800};
+    public static double CAIROS_DUNGEON_HEIGHT_PERCENTAGE = 0.2775;
+    public static double[] CAIROS_DUNGEON_WIDTH_PERCENTAGES = {0.3750, 0.5324, 0.6888, 0.8388, 0.9333, 0.7800};
 
     public static double B10_HEIGHT_PERCENTAGE = 0.8963;
     public static double B10_WIDTH_PERCENTAGE = 0.8601;
@@ -189,6 +192,21 @@ public class UIConstants {
 
     public static double BEASTS_REWARD_GET_HEIGHT_PERCENTAGE = 0.5450;
     public static double BEASTS_REWARD_GET_WIDTH_PERCENTAGE = 0.8259;
+
+    public static double[] RAID_READY_HEIGHT_PERCENTAGES = {0.0171 ,0.3637, 0.7058};
+    public static double RAID_READY_WIDTH_PERCENTAGE = 0.3079;
+
+    public static double RAID_READY_SIZE_WIDTH_PERCENTAGE = 0.0666;
+    public static double RAID_READY_SIZE_HEIGHT_PERCENTAGE = 0.0640;
+
+    public static double RAID_PLAY_WIDTH_PERCENTAGE = 0.8710;
+    public static double RAID_PLAY_HEIGHT_PERCENTAGE = 0.8107;
+
+    public static double RAID_PLAY_SIZE_WIDTH_PERCENTAGE = 0.1290;
+    public static double RAID_PLAY_SIZE_HEIGHT_PERCENTAGE = 0.1494;
+
+    public static double RAID_YES_WIDTH_PERCENTAGE = 0.4500;
+    public static double RAID_YES_HEIGHT_PERCENTAGE = 0.6150;
 
     public static double BEAST_STEP = 0.0842;
 

@@ -2,12 +2,18 @@ package com.example.swautoplay;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.os.Environment;
+import android.util.Log;
 
+import androidx.palette.graphics.Palette;
 import androidx.test.InstrumentationRegistry;
+import androidx.test.core.app.ApplicationProvider;
 import androidx.test.runner.AndroidJUnit4;
 import androidx.test.uiautomator.By;
 import androidx.test.uiautomator.UiDevice;
-import androidx.test.core.app.ApplicationProvider;
 import androidx.test.uiautomator.UiObjectNotFoundException;
 import androidx.test.uiautomator.UiScrollable;
 import androidx.test.uiautomator.UiSelector;
@@ -16,6 +22,16 @@ import androidx.test.uiautomator.Until;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 import static com.example.swautoplay.UIConstants.*;
 
@@ -30,6 +46,8 @@ public class SwAutoPlayTest {
     private static final int LAUNCH_TIMEOUT = 5000;
     private static final int TIMEOUT = 2000;
     private static final String SWAUTOPLAY_PACKAGE = "com.com2us.smon.normal.freefull.google.kr.android.common";
+    private static String CURRENT_SCREENSHOT_PATH = Environment.getExternalStorageDirectory() + "/currScreen.png";
+    private static String DEBUG_SCREENSHOT_PATH = Environment.getExternalStorageDirectory() + "/debugScreen.png";
 
     private static final int DUNGEON_LAUNCH_TIME = 15;
     protected static final int RIVALS_COUNT = 9;
@@ -110,6 +128,10 @@ public class SwAutoPlayTest {
                 this.handleBeasts();
                 break;
 
+            case "Raid":
+                this.handleRaid();
+                break;
+
             default:
                 if ("Karzhan".equals(config.dungeonName) || "Ellunia".equals(config.dungeonName) || "Lumel".equals(config.dungeonName)) {
                     this.handleRift();
@@ -120,7 +142,149 @@ public class SwAutoPlayTest {
         }
     }
 
-    private void handleBeasts() throws UiObjectNotFoundException, InterruptedException {
+    private void handleRaid() throws IOException, InterruptedException {
+        File currScreen = new File(CURRENT_SCREENSHOT_PATH);
+        RaidState currState;
+        RaidState previousState = RaidState.NOT_READY;
+        int runCount = 0;
+        while (runCount <= this.config.runCount) {
+            this.device.takeScreenshot(currScreen);
+            currState = this.getNextState(previousState);
+            Log.i("SWAP", "Current state : " + currState.toString());
+            switch (currState) {
+                case READY:
+                    this.wait(1);
+                    break;
+
+                case NOT_READY:
+                    this.click(RAID_PLAY_WIDTH_PERCENTAGE + RAID_PLAY_SIZE_WIDTH_PERCENTAGE/2, RAID_PLAY_HEIGHT_PERCENTAGE + RAID_PLAY_SIZE_HEIGHT_PERCENTAGE/2);
+                    break;
+
+                case IN_BATTLE:
+                    this.wait(this.config.averageDungeonTime + 26);
+                    Log.i("SWAP", "Loot are displayed");
+                    this.click(CLICK_SOMEWHERE_WIDTH_PERCENTAGE, CLICK_SOMEWHERE_HEIGHT_PERCENTAGE);
+//                    this.click(REWARD_GET_WIDTH_PERCENTAGE, REWARD_GET_HEIGHT_PERCENTAGE);
+                    this.click(EVENT_AWARD_OK_WIDTH_PERCENTAGE, EVENT_AWARD_OK_HEIGHT_PERCENTAGE);
+                    this.click(RAID_YES_HEIGHT_PERCENTAGE, RAID_YES_WIDTH_PERCENTAGE);
+                    this.wait(1);
+                    runCount++;
+                    break;
+
+                case WAIT_FOR_LOBBY:
+                    this.wait(1);
+                    break;
+
+                case ERROR:
+                    Log.e("SWAP", "IN ERROR STATE");
+                    break;
+
+                default:
+                    Log.e("SWAP", "UNKNOWN STATE");
+                    break;
+            }
+            previousState = currState;
+        }
+    }
+
+    private RaidState getNextState(RaidState previousState) throws IOException {
+        Bitmap bitmap = BitmapFactory.decodeFile(CURRENT_SCREENSHOT_PATH);
+
+        int readyX = (int)(this.device.getDisplayWidth() * RAID_READY_HEIGHT_PERCENTAGES[this.config.startStage]);
+        int readyY = (int)(this.device.getDisplayHeight() * RAID_READY_WIDTH_PERCENTAGE);
+        int readyWidth = (int)(this.device.getDisplayWidth() * RAID_READY_SIZE_HEIGHT_PERCENTAGE);
+        int readyHeight = (int)(this.device.getDisplayHeight() * RAID_READY_SIZE_WIDTH_PERCENTAGE);
+        Bitmap readyBitmap = Bitmap.createBitmap(bitmap, readyX, readyY, readyWidth, readyHeight, null, false);
+
+        /* DEBUG */
+        File debugFile = new File(DEBUG_SCREENSHOT_PATH);
+        debugFile.createNewFile();
+        FileOutputStream outDebugFile = new FileOutputStream(debugFile, false);
+        readyBitmap.compress(Bitmap.CompressFormat.PNG, 100, outDebugFile);
+        /* END DEBUG */
+
+        int greenCount = getBitmapGreenCount(readyBitmap);
+
+        if (greenCount < 150) {
+            int playX = (int)(this.device.getDisplayWidth() * RAID_PLAY_WIDTH_PERCENTAGE);
+            int playY = (int)(this.device.getDisplayHeight() * RAID_PLAY_HEIGHT_PERCENTAGE);
+            int playWidth = (int)(this.device.getDisplayWidth() * RAID_PLAY_SIZE_WIDTH_PERCENTAGE);
+            int playHeight = (int)(this.device.getDisplayHeight() * RAID_PLAY_SIZE_HEIGHT_PERCENTAGE);
+            Bitmap playBitmap = Bitmap.createBitmap(bitmap, playX, playY, playWidth, playHeight, null, false);
+
+            /* DEBUG */
+            debugFile = new File(DEBUG_SCREENSHOT_PATH);
+            debugFile.createNewFile();
+            outDebugFile = new FileOutputStream(debugFile, false);
+            playBitmap.compress(Bitmap.CompressFormat.PNG, 100, outDebugFile);
+            /* END DEBUG */
+
+            int playDominantColor = getDominantColor(playBitmap);
+            int red = Color.red(playDominantColor);
+            int green = Color.green(playDominantColor);
+            int blue = Color.blue(playDominantColor);
+            Log.i("SWAP", "Play dominant color : ");
+            Log.i("SWAP", "Color red : " + red);
+            Log.i("SWAP", "Color green : " + green);
+            Log.i("SWAP", "Color blue : " + blue);
+
+            if (red > 190 && red < 210 && green > 150 && green < 170 && blue > 60 && blue < 90) {
+                return RaidState.NOT_READY;
+            } else {
+                if (previousState == RaidState.IN_BATTLE || previousState == RaidState.WAIT_FOR_LOBBY) {
+                    return RaidState.WAIT_FOR_LOBBY;
+                } else {
+                    return RaidState.IN_BATTLE;
+                }
+            }
+        } else {
+            if (previousState == RaidState.NOT_READY || previousState == RaidState.READY) {
+                return RaidState.READY;
+            } else {
+                return RaidState.ERROR;
+            }
+        }
+    }
+
+    private int getBitmapGreenCount(Bitmap b) {
+        int width = b.getWidth();
+        int height = b.getHeight();
+        int red;
+        int green;
+        int blue;
+        int greenCount = 0;
+        int currPixel;
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                currPixel = b.getPixel(i, j);
+                red = Color.red(currPixel);
+                green = Color.green(currPixel);
+                blue = Color.blue(currPixel);
+//                Log.i("SWAP", "------------------");
+//                Log.i("SWAP", "(" + i + ", " + j + ")");
+//                Log.i("SWAP", "Color red : " + red);
+//                Log.i("SWAP", "Color green : " + green);
+//                Log.i("SWAP", "Color blue : " + blue);
+//                Log.i("SWAP", "------------------");
+                greenCount += (green >= 170 && red >= 120 && red <= 135 && blue <= 70) ? 1 : 0 ;
+            }
+        }
+        return greenCount;
+    }
+
+    private int getDominantColor(Bitmap bitmap) {
+        List<Palette.Swatch> swatchesTemp = Palette.from(bitmap).generate().getSwatches();
+        List<Palette.Swatch> swatches = new ArrayList<>(swatchesTemp);
+        Collections.sort(swatches, new Comparator<Palette.Swatch>() {
+            @Override
+            public int compare(Palette.Swatch swatch1, Palette.Swatch swatch2) {
+                return swatch2.getPopulation() - swatch1.getPopulation();
+            }
+        });
+        return swatches.size() > 0 ? swatches.get(0).getRgb() : -1;
+    }
+
+    private void handleBeasts() throws InterruptedException {
         this.click(RIFT_WORLD_ENTRY_WIDTH_PERCENTAGE, RIFT_WORLD_ENTRY_HEIGHT_PERCENTAGE);
         this.click(CONFIRM_WORLD_RIFT_ENTRY_WIDTH_PERCENTAGE, CONFIRM_WORLD_RIFT_ENTRY_HEIGHT_PERCENTAGE);
         this.click(BEASTS_ENTRANCE_WIDTH_PERCENTAGE, BEASTS_ENTRANCE_HEIGHT_PERCENTAGE);
@@ -425,6 +589,8 @@ public class SwAutoPlayTest {
             this.click(REWARD_GET_WIDTH_PERCENTAGE, REWARD_GET_HEIGHT_PERCENTAGE);
             this.click(REWARD_OK_WIDTH_PERCENTAGE, REWARD_OK_HEIGHT_PERCENTAGE);
         }
+
+        this.click(EVENT_AWARD_OK_WIDTH_PERCENTAGE, EVENT_AWARD_OK_HEIGHT_PERCENTAGE);
 
         if (this.dungeonDoneCount < config.runCount - 1) {
             this.click(REPLAY_WIDTH_PERCENTAGE, REPLAY_HEIGHT_PERCENTAGE);

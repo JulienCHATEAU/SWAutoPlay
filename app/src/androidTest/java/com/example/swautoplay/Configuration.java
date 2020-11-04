@@ -37,7 +37,7 @@ public class Configuration {
 
         this.isHoH = false;
         this.isDoubleReward = false;
-        this.availableRivals = new boolean[RIVALS_COUNT];
+        this.availableRivals = new boolean[50];
     }
 
     public Configuration parse() {
@@ -56,13 +56,13 @@ public class Configuration {
         temp = InstrumentationRegistry.getArguments().getString("Level");
         this.level = (temp == null) ? -1 : Integer.parseInt(temp);
 
-        temp = InstrumentationRegistry.getArguments().getString("RivalsState");
-        if (temp != null) {
-            String[] splitRivals = temp.split("");
-            for (int i = 1; i<RIVALS_COUNT+1; i++) {
-                this.availableRivals[i-1] = "1".equals(splitRivals[i]);
-            }
-        }
+//        temp = InstrumentationRegistry.getArguments().getString("RivalsState");
+//        if (temp != null) {
+//            String[] splitRivals = temp.split("");
+//            for (int i = 1; i<RIVALS_COUNT+1; i++) {
+//                this.availableRivals[i-1] = "1".equals(splitRivals[i]);
+//            }
+//        }
 
 
         temp = InstrumentationRegistry.getArguments().getString("HoH");

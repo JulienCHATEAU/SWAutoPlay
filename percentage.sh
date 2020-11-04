@@ -4,9 +4,9 @@ for var in "$@"
 do
     if [[ $((i%2)) -eq 0 ]]
     then
-        bc -l <<< $var/1776
+        bc -l <<< $var/2040
     else
-        bc -l <<< $var/1080
+        bc -l <<< $var/1078
     fi
     i=$i+1
 done

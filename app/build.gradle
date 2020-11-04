@@ -5,20 +5,19 @@ android {
     buildToolsVersion "29.0.0"
     defaultConfig {
         applicationId "com.example.swautoplay"
-        minSdkVersion 18
+        minSdkVersion 21
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        testInstrumentationRunnerArgument "DungeonName", "Fortress"
-        testInstrumentationRunnerArgument "AverageDungeonTime", "90"
-        testInstrumentationRunnerArgument "RunCount", "30"
-        testInstrumentationRunnerArgument "Refill", "None"
-        testInstrumentationRunnerArgument "StartTestPosition", "Island"
+        testInstrumentationRunnerArgument "DungeonName", "Raid"
+        testInstrumentationRunnerArgument "AverageDungeonTime", "28"
+        testInstrumentationRunnerArgument "RunCount", "10"
+        testInstrumentationRunnerArgument "Refill", "Chest"
+        testInstrumentationRunnerArgument "StartTestPosition", "ToA"
         testInstrumentationRunnerArgument "Difficulty", "Hard"
         testInstrumentationRunnerArgument "Level", "5"
-        testInstrumentationRunnerArgument "StartStage", "5"
-        testInstrumentationRunnerArgument "RivalsState", "000000001"
+        testInstrumentationRunnerArgument "StartStage", "1"
         testInstrumentationRunnerArgument "HoH", "false"
         testInstrumentationRunnerArgument "DoubleReward", "false"
     }
@@ -34,6 +33,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'com.android.support:palette-v7:+'
+    // https://mvnrepository.com/artifact/com.github.jai-imageio/jai-imageio-core
+    implementation group: 'com.github.jai-imageio', name: 'jai-imageio-core', version: '1.3.1'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
